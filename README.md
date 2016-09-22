@@ -18,8 +18,15 @@ The build is based on Ubuntu and will install all the required components. The f
 ```
 # git clone https://github.com/xme/misp-docker
 # cd misp-docker
-# docker build -t misp/misp --build-arg MYSQL_ROOT_PASSWORD=<mysql_root_pw> .
+# make build
 ```
+
+or if you do not have development tools installed on your machine:
+
+```
+docker build -t misp/misp --build-arg MYSQL_ROOT_PASSWORD=<mysql_root_pw> .
+```
+
 (Choose your MySQL root password at build time)
 
 # Running the image
@@ -40,6 +47,12 @@ This file will help to customize your MISP instance.
 * `MISP_BASEURL` is the URL that will be used to access the web interface. Please escape any caracters that could affect a regex.
 
 Then boot the container:
+
+```
+make run
+```
+or if you do not have development tools installed on your machine:
+
 ```
 # docker run -d -p 443:443 -v /dev/urandom:/dev/random --env-file=env.txt --restart=always --name misp misp/misp
 ```
